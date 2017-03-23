@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+
+option java_multiple_files = true;
+option java_package = "net.basiccloud.light.core";
+option java_outer_classname = "PerformanceBaselineWithSslProto";
+option objc_class_prefix = "Light";
+
+package light;
+
+import "light/lightDescriptor.proto";
+import "light/performanceMessage.proto";
+
+service PerformanceBaselineServiceWithSsl {
+    option (version) = "1.0.0";
+    option (enableSsl) = true;
+    option (group) = "Light";
+
+    rpc Touch (TouchRequest) returns (TouchResponse) {}
+    rpc Echo (EchoRequest) returns (EchoResponse) {}
+}
+
+message EchoWithEncryptRequest {
+    string content = 1;
+}
+
+message EchoWithEncryptResponse {
+    string content = 1;
+}
