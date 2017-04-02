@@ -8,10 +8,11 @@ import net.basiccloud.light.core.PerformanceBaselineServiceGrpc.PerformanceBasel
 import net.basiccloud.light.core.TouchRequest;
 import net.basiccloud.light.core.TouchResponse;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class ClientTest {
-
+    @Ignore("need server start")
     @Test
     public void test01() {
         PerformanceBaselineServiceBlockingStub client = GrpcClientBuilder.sync(

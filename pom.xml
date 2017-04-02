@@ -16,10 +16,10 @@
     <name>Light Parent</name>
 
     <modules>
-		<module>core</module>
+        <module>core</module>
         <module>server</module>
         <module>client</module>
-		<module>starter</module>
+        <module>starter</module>
     </modules>
 
     <repositories>

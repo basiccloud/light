@@ -23,7 +23,7 @@ class VersionFilter {
 
         if (!Priority.hasAvailableInstance(priorities)) {
             throw new RuntimeException(
-                    "version filter not found match " + serviceStatusList.get(0).getService() + "instance");
+                    "version filter not found match " + serviceStatusList.get(0).getService() + " instance");
         }
     }
 
