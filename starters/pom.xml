@@ -7,9 +7,14 @@
 
     <parent>
         <groupId>net.basiccloud.light</groupId>
-        <artifactId>light-starter-parent</artifactId>
+        <artifactId>light-parent</artifactId>
         <version>0.1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>light-starter-microservice</artifactId>
-    <name>Light Starter Microservice</name>
+    <artifactId>light-starter-parent</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <name>Light Starter Parent</name>
+
+    <modules>
+        <module>starter-server</module>
+    </modules>
 </project>

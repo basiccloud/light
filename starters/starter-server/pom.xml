@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>net.basiccloud.light</groupId>
+        <artifactId>light-starter-parent</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>light-starter-server</artifactId>
+    <name>Light Starter Server</name>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>${light.groupId}</groupId>
+                <artifactId>light-server-assembly</artifactId>
+                <version>${light.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${light.groupId}</groupId>
+                <artifactId>light-client-rich</artifactId>
+                <version>${light.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${light.groupId}</groupId>
+                <artifactId>light-core</artifactId>
+                <version>${light.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${light.groupId}</groupId>
+                <artifactId>light-server</artifactId>
+                <version>${light.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!-- maven plugin configuration to assemble server -->
+                <plugin>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>${maven.dependency.plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>unpack</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>unpack</goal>
+                            </goals>
+                            <configuration>
+                                <artifactItems>
+                                    <artifactItem>
+                                        <groupId>${light.groupId}</groupId>
+                                        <artifactId>light-server</artifactId>
+                                        <version>${light.version}</version>
+                                        <outputDirectory>${project.build.directory}/light
+                                        </outputDirectory>
+                                        <includes>META-INF/assembly/**, *.properties, *.xml
+                                        </includes>
+                                    </artifactItem>
+                                </artifactItems>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${maven.assembly.plugin.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>${light.groupId}</groupId>
+                            <artifactId>light-server-assembly</artifactId>
+                            <version>${light.version}</version>
+                        </dependency>
+                    </dependencies>
+                    <configuration>
+                        <appendAssemblyId>false</appendAssemblyId>
+                        <descriptorRefs>
+                            <descriptorRef>light-server</descriptorRef>
+                        </descriptorRefs>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>make-assembly</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>single</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>

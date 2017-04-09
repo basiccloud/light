@@ -15,7 +15,7 @@
     <name>Light Server Parent</name>
 
     <modules>
-        <module>microservice</module>
+        <module>server</module>
         <module>server-assembly</module>
     </modules>
 </project>

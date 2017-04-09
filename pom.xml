@@ -17,9 +17,9 @@
 
     <modules>
         <module>core</module>
-        <module>server</module>
-        <module>client</module>
-        <module>starter</module>
+        <module>servers</module>
+        <module>clients</module>
+        <module>starters</module>
     </modules>
 
     <repositories>
@@ -31,6 +31,8 @@
     </repositories>
 
     <properties>
+        <light.groupId>net.basiccloud.light</light.groupId>
+        <light.version>0.1.0-SNAPSHOT</light.version>
         <rpc.dependency.version>0.1.0-SNAPSHOT</rpc.dependency.version>
         <spring.dependency.version>0.1.0-SNAPSHOT</spring.dependency.version>
         <foundation.etcd.reigistry.version>0.1.0-SNAPSHOT</foundation.etcd.reigistry.version>
