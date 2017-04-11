@@ -131,7 +131,7 @@ public abstract class AbstractClientBuilder<Builder extends AbstractClientBuilde
         }
     }
 
-    protected SocketAddress getSocketAddressFromDirectAddress() {
+    protected InetSocketAddress getSocketAddressFromDirectAddress() {
         Preconditions.checkNotNull(directAddress);
         String[] split = directAddress.split(":");
         if (split.length < 2) {

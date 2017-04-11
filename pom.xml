@@ -29,6 +29,13 @@
             <url>http://maven.basiccloud.net/artifactory/list/basiccloud/</url>
         </repository>
     </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>basicCloud</id>
+            <name>basic cloud repository</name>
+            <url>http://maven.basiccloud.net/artifactory/list/basiccloud/</url>
+        </pluginRepository>
+    </pluginRepositories>
 
     <properties>
         <light.groupId>net.basiccloud.light</light.groupId>

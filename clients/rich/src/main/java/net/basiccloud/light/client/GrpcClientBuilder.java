@@ -1,13 +1,19 @@
 package net.basiccloud.light.client;
 
 import com.google.common.base.Strings;
+
 import io.grpc.Channel;
 import io.grpc.netty.NettyChannelBuilder;
 import io.grpc.util.RoundRobinLoadBalancerFactory;
+
 import net.basiccloud.light.client.internal.AbstractClientBuilder;
 import net.basiccloud.light.client.internal.LightNameResolverProvider;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.net.InetSocketAddress;
+import java.net.SocketAddress;
 
 
 public class GrpcClientBuilder<T> extends AbstractClientBuilder<GrpcClientBuilder<T>, T> {
@@ -39,7 +45,9 @@ public class GrpcClientBuilder<T> extends AbstractClientBuilder<GrpcClientBuilde
         } else {
             logger.warn("**** use direct Address {} to access service {}, skip registry ****", directAddress,
                     serviceMetadata.getName());
-            nettyChannelBuilder = NettyChannelBuilder.forAddress(getSocketAddressFromDirectAddress());
+            InetSocketAddress socketAddressFromDirectAddress = getSocketAddressFromDirectAddress();
+            nettyChannelBuilder = NettyChannelBuilder.forAddress(socketAddressFromDirectAddress.getHostName(),
+                    socketAddressFromDirectAddress.getPort());
         }
 
         nettyChannelBuilder.usePlaintext(true);
