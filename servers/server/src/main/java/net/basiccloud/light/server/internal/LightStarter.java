@@ -61,7 +61,7 @@ class LightStarter implements CommandLineRunner, DisposableBean {
         NettyServerBuilder nettyServerBuilder = NettyServerBuilder.forPort(lightProperties.getPort());
         allService.forEach(serviceInfo -> {
             nettyServerBuilder.addService(serviceInfo.getServerServiceDefinition());
-            if (serviceInfo.getAnnotationType() == LightService.class && serviceRegistryServer != null) {
+            if (serviceInfo.getAnnotationType() == LightService.class) {
                 RegisterId registry = registry(serviceInfo.getServiceMetadata().getGroup(),
                         serviceInfo.getServiceMetadata().getName(), serviceInfo.getServiceMetadata().getVersion());
                 registerIds.add(registry);

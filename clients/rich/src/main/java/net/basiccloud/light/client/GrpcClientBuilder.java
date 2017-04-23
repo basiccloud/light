@@ -8,6 +8,7 @@ import io.grpc.util.RoundRobinLoadBalancerFactory;
 
 import net.basiccloud.light.client.internal.AbstractClientBuilder;
 import net.basiccloud.light.client.internal.LightNameResolverProvider;
+import net.basiccloud.light.client.internal.RandomLoadBalancerFactory;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,7 +42,7 @@ public class GrpcClientBuilder<T> extends AbstractClientBuilder<GrpcClientBuilde
             String target = LightNameResolverProvider.SCHEME + "://" + serviceMetadata.getGroup() + "." +
                     serviceMetadata.getName();
             nettyChannelBuilder = NettyChannelBuilder.forTarget(target).loadBalancerFactory(
-                    RoundRobinLoadBalancerFactory.getInstance());
+                    RandomLoadBalancerFactory.getInstance());
         } else {
             logger.warn("**** use direct Address {} to access service {}, skip registry ****", directAddress,
                     serviceMetadata.getName());
