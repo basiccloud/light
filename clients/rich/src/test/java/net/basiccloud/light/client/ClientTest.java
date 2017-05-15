@@ -2,14 +2,13 @@ package net.basiccloud.light.client;
 
 import net.basiccloud.light.core.EchoRequest;
 import net.basiccloud.light.core.EchoResponse;
-import net.basiccloud.light.core.PerformanceBaselineMessageProto;
 import net.basiccloud.light.core.PerformanceBaselineProto;
 import net.basiccloud.light.core.PerformanceBaselineServiceGrpc.PerformanceBaselineServiceBlockingStub;
-import net.basiccloud.light.core.TouchRequest;
-import net.basiccloud.light.core.TouchResponse;
 
 import org.junit.Ignore;
 import org.junit.Test;
+
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class ClientTest {
     @Ignore("need server start and etcd server")
@@ -31,4 +30,14 @@ public class ClientTest {
         EchoResponse echoResponse = client.echo(EchoRequest.newBuilder().setContent("aaaaa").build());
         System.out.println(echoResponse);
     }
+
+    @Test
+    public void test() throws InterruptedException {
+        LinkedBlockingQueue<String> queue = new LinkedBlockingQueue<String>();
+        queue.put("aaaaa");
+        System.out.println(queue.size());
+        String take = queue.take();
+        System.out.println(take);
+    }
+
 }
