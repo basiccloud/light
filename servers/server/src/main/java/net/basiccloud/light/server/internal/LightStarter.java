@@ -61,7 +61,7 @@ class LightStarter implements CommandLineRunner, DisposableBean {
         NettyServerBuilder nettyServerBuilder = NettyServerBuilder.forPort(lightProperties.getPort());
         allService.forEach(serviceInfo -> {
             nettyServerBuilder.addService(serviceInfo.getServerServiceDefinition());
-            if (serviceInfo.getAnnotationType() == LightService.class && !lightProperties.isSkipRegistry()) {
+            if (serviceInfo.getAnnotationType() == LightService.class) {
                 RegisterId registry = registry(serviceInfo.getServiceMetadata().getGroup(),
                         serviceInfo.getServiceMetadata().getName(), serviceInfo.getServiceMetadata().getVersion());
                 registerIds.add(registry);
@@ -84,7 +84,7 @@ class LightStarter implements CommandLineRunner, DisposableBean {
                 .currentTimeMillis()).build();
 
         Optional<String> ipFromSocket = IpUtil.getIpFromSocket();
-        if (ipFromSocket.isPresent()) {
+        if (ipFromSocket.isPresent() & serviceRegistryServer != null) {
             ServiceInstance serviceInstance = ServiceInstance.newBuilder().setData(serviceInstanceData).setGroup(
                     group).setService(name).setIp(ipFromSocket.get()).setPort(lightProperties.getPort()).setStatus
                     (serviceInstanceStatus)
