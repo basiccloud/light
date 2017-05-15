@@ -53,20 +53,21 @@ class LightStarter implements CommandLineRunner, DisposableBean {
         logger.info("start run");
         serviceScan.init();
 
-        if (lightProperties.isSkipRegistry()) {
-            logger.warn("**** registry is skipped: light.skipRegistry is set to true ****");
-        }
 
         List<ServiceInfo> allService = serviceScan.getAllService();
         NettyServerBuilder nettyServerBuilder = NettyServerBuilder.forPort(lightProperties.getPort());
-        allService.forEach(serviceInfo -> {
-            nettyServerBuilder.addService(serviceInfo.getServerServiceDefinition());
-            if (serviceInfo.getAnnotationType() == LightService.class) {
-                RegisterId registry = registry(serviceInfo.getServiceMetadata().getGroup(),
-                        serviceInfo.getServiceMetadata().getName(), serviceInfo.getServiceMetadata().getVersion());
-                registerIds.add(registry);
-            }
-        });
+        allService.forEach(serviceInfo -> nettyServerBuilder.addService(serviceInfo.getServerServiceDefinition()));
+        if (lightProperties.isSkipRegistry()) {
+            logger.warn("**** registry is skipped: light.skipRegistry is set to true ****");
+        } else {
+            allService.stream().filter(serviceInfo -> serviceInfo.getAnnotationType() == LightService.class).forEach
+                    (serviceInfo -> {
+                        RegisterId registry = registry(serviceInfo.getServiceMetadata().getGroup(),
+                                serviceInfo.getServiceMetadata().getName(),
+                                serviceInfo.getServiceMetadata().getVersion());
+                        registerIds.add(registry);
+                    });
+        }
         ServerImpl server = nettyServerBuilder.build();
         server.start();
         servers.add(server);
