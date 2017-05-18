@@ -27,6 +27,7 @@ public class ClientTest {
         PerformanceBaselineServiceBlockingStub client = GrpcClientBuilder.sync(
                 PerformanceBaselineServiceBlockingStub.class)
                 .protoClass(PerformanceBaselineProto.class).useDirectAddress("127.0.0.1:1080").build();
+
         EchoResponse echoResponse = client.echo(EchoRequest.newBuilder().setContent("aaaaa").build());
         System.out.println(echoResponse);
     }

@@ -1,12 +1,15 @@
 package net.basiccloud.light.server.internal;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 
 /**
  * LightProperties
  */
-@SuppressWarnings("unused")
-@ConfigurationProperties(prefix = "light", locations = "classpath:light.properties")
+@Component
+@PropertySource("classpath:light.properties")
+@ConfigurationProperties(prefix = "light")
 class LightProperties {
 
     private int port;
