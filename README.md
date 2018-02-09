@@ -1,18 +1,6 @@
-![](http://light.basiccloud.net/assets/img/logo-big.png)
+Dream Mesh，梦想的Service Mesh。
 
-## English
+项目筹备中，正在进行早期调研和讨论，稍后将以开源项目的方式进行。
 
-`Light` is a lightweight microservice framework.
+[请点击这里阅读Dream Mesh相关讨论的博客内容](https://skyao.io/post/)
 
-For detail, please reference to `Light` website:
-
-http://light.basiccloud.net/index.html
-
-
-## 中文
-
-`Light` 是一个轻量级微服务框架。
-
-更多详情，请参见 `Light` 的网站：
-
-http://light.basiccloud.net/index-zh.html

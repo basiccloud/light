@@ -1,6 +1,0 @@
-syntax = "proto3";
-
-option java_outer_classname = "LightProto";
-option java_package = "net.basiccloud.light.core";
-
-import "light/performance.proto";
